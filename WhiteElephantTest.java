@@ -2,13 +2,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 public class WhiteElephantTest{
-
+    WhiteElephant test = new WhiteElephant("test");
     @Test
     public void parseTestWithSpaceName(){
         String str = "a, c, g, tt,   ";
 
         String[] expected = {"a", "c", "g", "tt"};
-        String[] result = WhiteElephant.parse(str);
+        String[] result = test.parse(str);
 
         assertArrayEquals(expected, result);
     }
@@ -18,7 +18,7 @@ public class WhiteElephantTest{
         String str = "a, c, g,,,, tt,,,";
 
         String[] expected = {"a", "c", "g", "tt"};
-        String[] result = WhiteElephant.parse(str);
+        String[] result = test.parse(str);
 
         assertArrayEquals(expected, result);
     }
@@ -28,7 +28,7 @@ public class WhiteElephantTest{
         String str = null;
 
         String[] expected = null;
-        String[] result = WhiteElephant.parse(str);
+        String[] result = test.parse(str);
 
         assertArrayEquals(expected, result);
     }
@@ -38,7 +38,7 @@ public class WhiteElephantTest{
         String str = "   ";
 
         String[] expected = {""};
-        String[] result = WhiteElephant.parse(str);
+        String[] result = test.parse(str);
 
         assertArrayEquals(expected, result);
     }
@@ -48,7 +48,7 @@ public class WhiteElephantTest{
         String str = "  Adam Smith, 	 Denyse Depaoli, Jr. Douglas Loberg, Eveline Crone, Delora Mondragon, Darlena Outlaw, Molly Wollman	 , Lovella Massengale, Norine Jaqua, Alesia Epley, Sheryl Michelson";
 
         String[] expected = {"Adam Smith", "Denyse Depaoli", "Jr. Douglas Loberg", "Eveline Crone", "Delora Mondragon", "Darlena Outlaw", "Molly Wollman", "Lovella Massengale", "Norine Jaqua", "Alesia Epley", "Sheryl Michelson"};
-        String[] result = WhiteElephant.parse(str);
+        String[] result = test.parse(str);
 
         assertArrayEquals(expected, result);
     }
@@ -59,7 +59,7 @@ public class WhiteElephantTest{
         int len = names.length;
 
         String[] expected = {"a", "aa", "ac", "ac_1", "b", "bb"};
-        WhiteElephant.updateNames(names, len);
+        test.updateNames(names, len);
 
         assertArrayEquals(expected, names);
     }
@@ -70,7 +70,7 @@ public class WhiteElephantTest{
         int len = names.length;
 
         String[] expected = {"a", "b", "c"};
-        WhiteElephant.updateNames(names, len);
+        test.updateNames(names, len);
 
         assertArrayEquals(expected, names);
     }
@@ -81,7 +81,7 @@ public class WhiteElephantTest{
         int len = names.length;
 
         String[] expected = {"a"};
-        WhiteElephant.updateNames(names, len);
+        test.updateNames(names, len);
 
         assertArrayEquals(expected, names);
     }
@@ -92,7 +92,7 @@ public class WhiteElephantTest{
         int len = names.length;
 
         String[] expected = {"a","a_1", "a_2", "a_3", "a_4" ,"a_5","a_6","a_7"};
-        WhiteElephant.updateNames(names, len);
+        test.updateNames(names, len);
 
         assertArrayEquals(expected, names);
     }
@@ -101,7 +101,7 @@ public class WhiteElephantTest{
     public void generateAssignmentsTest(){
         String[] participants = {"a", "a_1", "b", "c", "d", "e"};
 
-        String[] recipients = WhiteElephant.generateAssignments(participants);
+        String[] recipients = test.generateAssignments(participants);
 
         for(int i = 0; i < participants.length; i++){
             assertThat(participants[i], not(equalTo(recipients[i])));
@@ -112,7 +112,7 @@ public class WhiteElephantTest{
     public void generateAssignmentsTest2(){
         String[] participants = {"a", "b", "c"};
 
-        String[] recipients = WhiteElephant.generateAssignments(participants);
+        String[] recipients = test.generateAssignments(participants);
 
         for(int i = 0; i < participants.length; i++){
             assertThat(participants[i], not(equalTo(recipients[i])));
@@ -123,7 +123,7 @@ public class WhiteElephantTest{
     public void generateAssignmentsTestWithTwo(){
         String[] participants = {"a", "b"};
 
-        String[] recipients = WhiteElephant.generateAssignments(participants);
+        String[] recipients = test.generateAssignments(participants);
 
         assertNull(recipients);
     }
@@ -132,7 +132,7 @@ public class WhiteElephantTest{
     public void generateAssignmentsTestWithOne(){
         String[] participants = {"a"};
 
-        String[] recipients = WhiteElephant.generateAssignments(participants);
+        String[] recipients = test.generateAssignments(participants);
 
         assertNull(recipients);
     }
@@ -141,7 +141,7 @@ public class WhiteElephantTest{
     public void generateAssignmentsTestWithNull(){
         String[] participants = null;
 
-        String[] recipients = WhiteElephant.generateAssignments(participants);
+        String[] recipients = test.generateAssignments(participants);
 
         assertNull(recipients);
     }

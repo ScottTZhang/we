@@ -10,7 +10,18 @@ public class WhiteElephant{
             System.exit(0);
         }
 
-        String file = args[0];
+        WhiteElephant we = new WhiteElephant(args[0]);
+        we.assignRecipients();
+    }
+
+    private String file;
+    //initialize the instance
+
+    public WhiteElephant(String filename){
+        file = filename;
+    }
+
+    public void assignRecipients() throws Exception{
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line = null;
         int count = 1;
@@ -24,12 +35,7 @@ public class WhiteElephant{
         }
         reader.close();
     }
-    
-    private String input;
-    //initialize the instance
-    pulbic WhiteElephant(String filename){
-        input = filename;
-    }
+
     //turn string into string array with trimmed names
     public String[] parse(String line){
         if(line == null || line.length() == 0){
